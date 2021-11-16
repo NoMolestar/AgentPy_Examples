@@ -1,2 +1,9 @@
 # AgentPy_Examples
-Simulations with agents using the AgentPy library in Python.
+
+Simulaciones con agentes utilizando la librería AgentPy de Python.
+
+## Actividades
+
+### M1
+
+Simulación de la limpieza de los azulejos de una habitación.

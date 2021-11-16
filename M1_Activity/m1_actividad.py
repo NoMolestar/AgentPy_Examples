@@ -38,7 +38,7 @@ class Limpieza(ap.Model):
 
     # Creación de los agentes y de la habitación.
     def setup(self):
-        n_tiles = int(self.p['densidad azulejos'] * (self.p.size**2))
+        n_tiles = int(self.p['azulejos sucios'] * (self.p.size**2))
         tiles = self.agents = ap.AgentList(self, n_tiles)
         self.room = ap.Grid(self, [self.p.size]*2, track_empty=True)
         self.room.add_agents(tiles, random=True, empty=True)
@@ -66,7 +66,7 @@ class Limpieza(ap.Model):
 """### Definimos los parametros de la cuadricula y la cantidad de pasos"""
 
 parameters = {
-    'densidad azulejos': 0.7,
+    'azulejos sucios': 0.7,
     'size': 50, # Tamaño de la habitación
     'steps': 100,
 }
@@ -97,12 +97,12 @@ Este experimento nos dirá el tiempo que tarda en limpiar toda la cuadricula.
 
 #  Definimos nuevamente los parametros para experimentar con el tiempo
 parameters = {
-    'densidad azulejos': ap.Range(0.2, 0.6),
+    'azulejos sucios': ap.Range(0.2, 0.7),
     'size': 100
 }
 sample = ap.Sample(parameters, n=30)
 # Iniciamos simulación
-exp = ap.Experiment(Limpieza, sample, iterations=40)
+exp = ap.Experiment(Limpieza, sample, iterations=20)
 results = exp.run()
 
 """### Graficamos la velocidad con la que se limpian todos los cuadros de la cuadricula"""
@@ -110,6 +110,6 @@ results = exp.run()
 sns.set_theme()
 sns.lineplot(
     data=results.arrange_reporters(),
-    x='densidad azulejos',
-    y='porcentaje de azulejos limpios'
+    y='porcentaje de azulejos limpios',
+    x='azulejos sucios'
 );
